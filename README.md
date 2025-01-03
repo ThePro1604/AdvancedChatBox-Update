@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This library will be updated to major minecraft versions only in the future.
+
 # AdvancedChatBox
 
 AdvancedChatBox allows for complex suggestions and tab completion to be added into the Minecraft chat box.
