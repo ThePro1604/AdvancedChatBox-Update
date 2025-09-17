@@ -14,13 +14,16 @@ import io.github.darkkronicle.advancedchatbox.interfaces.IMessageFormatter;
 import io.github.darkkronicle.advancedchatcore.config.SaveableConfig;
 import io.github.darkkronicle.advancedchatcore.interfaces.ConfigRegistryOption;
 import io.github.darkkronicle.advancedchatcore.util.AbstractRegistry;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Supplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-/** Registry of Chat Formatters */
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Supplier;
+
+/**
+ * Registry of Chat Formatters
+ */
 @Environment(EnvType.CLIENT)
 public class ChatFormatterRegistry
         extends AbstractRegistry<IMessageFormatter, ChatFormatterRegistry.ChatFormatterOption> {
@@ -32,7 +35,8 @@ public class ChatFormatterRegistry
         return INSTANCE;
     }
 
-    private ChatFormatterRegistry() {}
+    private ChatFormatterRegistry() {
+    }
 
     @Override
     public ChatFormatterRegistry clone() {
@@ -45,7 +49,7 @@ public class ChatFormatterRegistry
 
     @Override
     public ChatFormatterOption constructOption(Supplier<IMessageFormatter> iMessageFormatter, String saveString,
-            String translation, String infoTranslation, boolean active, boolean setDefault, boolean hidden) {
+                                               String translation, String infoTranslation, boolean active, boolean setDefault, boolean hidden) {
         return new ChatFormatterOption(iMessageFormatter, saveString, translation, infoTranslation, active, hidden,
                 this);
     }
@@ -60,7 +64,7 @@ public class ChatFormatterRegistry
         private final boolean hidden;
 
         private ChatFormatterOption(Supplier<IMessageFormatter> formatter, String saveString, String translation,
-                String infoTranslation, boolean active, boolean hidden, ChatFormatterRegistry registry) {
+                                    String infoTranslation, boolean active, boolean hidden, ChatFormatterRegistry registry) {
             this(formatter.get(), saveString, translation, infoTranslation, active, hidden, registry);
         }
 
@@ -71,7 +75,7 @@ public class ChatFormatterRegistry
 
         // Only register
         private ChatFormatterOption(IMessageFormatter formatter, String saveString, String translation,
-                String infoTranslation, boolean active, boolean hidden, ChatFormatterRegistry registry) {
+                                    String infoTranslation, boolean active, boolean hidden, ChatFormatterRegistry registry) {
             this.formatter = formatter;
             this.saveString = saveString;
             this.translation = translation;

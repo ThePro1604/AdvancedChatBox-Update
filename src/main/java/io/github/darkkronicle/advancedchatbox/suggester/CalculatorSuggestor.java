@@ -14,13 +14,14 @@ import io.github.darkkronicle.advancedchatbox.interfaces.IMessageSuggestor;
 import io.github.darkkronicle.advancedchatcore.util.FindType;
 import io.github.darkkronicle.advancedchatcore.util.SearchUtils;
 import io.github.darkkronicle.advancedchatcore.util.StringMatch;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import org.mariuszgromada.math.mxparser.Expression;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import org.mariuszgromada.math.mxparser.Expression;
 
 @Environment(EnvType.CLIENT)
 public class CalculatorSuggestor implements IMessageSuggestor {

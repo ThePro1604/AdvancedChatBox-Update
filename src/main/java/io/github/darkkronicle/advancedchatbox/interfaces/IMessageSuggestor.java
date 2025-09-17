@@ -10,6 +10,7 @@ package io.github.darkkronicle.advancedchatbox.interfaces;
 import com.mojang.brigadier.context.StringRange;
 import io.github.darkkronicle.advancedchatbox.chat.AdvancedSuggestion;
 import io.github.darkkronicle.advancedchatbox.chat.AdvancedSuggestions;
+
 import java.util.List;
 import java.util.Optional;
 

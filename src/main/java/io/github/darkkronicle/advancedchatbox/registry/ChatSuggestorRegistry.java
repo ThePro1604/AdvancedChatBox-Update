@@ -14,13 +14,16 @@ import io.github.darkkronicle.advancedchatbox.interfaces.IMessageSuggestor;
 import io.github.darkkronicle.advancedchatcore.config.SaveableConfig;
 import io.github.darkkronicle.advancedchatcore.interfaces.ConfigRegistryOption;
 import io.github.darkkronicle.advancedchatcore.util.AbstractRegistry;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Supplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-/** Chat suggestor registry */
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Supplier;
+
+/**
+ * Chat suggestor registry
+ */
 @Environment(EnvType.CLIENT)
 public class ChatSuggestorRegistry
         extends AbstractRegistry<IMessageSuggestor, ChatSuggestorRegistry.ChatSuggestorOption> {
@@ -34,7 +37,7 @@ public class ChatSuggestorRegistry
 
     @Override
     public ChatSuggestorOption constructOption(Supplier<IMessageSuggestor> iMessageSuggestor, String saveString,
-            String translation, String infoTranslation, boolean active, boolean hidden, boolean setDefault) {
+                                               String translation, String infoTranslation, boolean active, boolean hidden, boolean setDefault) {
         return new ChatSuggestorOption(iMessageSuggestor, saveString, translation, infoTranslation, active, hidden,
                 this);
     }
@@ -59,12 +62,12 @@ public class ChatSuggestorRegistry
         private final SaveableConfig<ConfigBoolean> active;
 
         public ChatSuggestorOption(Supplier<IMessageSuggestor> suggestor, String saveString, String translation,
-                String infoTranslation, boolean active, boolean hidden, ChatSuggestorRegistry registry) {
+                                   String infoTranslation, boolean active, boolean hidden, ChatSuggestorRegistry registry) {
             this(suggestor.get(), saveString, translation, infoTranslation, active, hidden, registry);
         }
 
         public ChatSuggestorOption(IMessageSuggestor suggestor, String saveString, String translation,
-                String infoTranslation, boolean active, boolean hidden, ChatSuggestorRegistry registry) {
+                                   String infoTranslation, boolean active, boolean hidden, ChatSuggestorRegistry registry) {
             this.saveString = saveString;
             this.suggestor = suggestor;
             this.translation = translation;

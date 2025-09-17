@@ -24,13 +24,6 @@ import io.github.darkkronicle.advancedchatbox.suggester.gui.ShortcutListWidget;
 import io.github.darkkronicle.advancedchatcore.AdvancedChatCore;
 import io.github.darkkronicle.advancedchatcore.interfaces.IJsonApplier;
 import io.github.darkkronicle.advancedchatcore.interfaces.IScreenSupplier;
-import io.github.darkkronicle.advancedchatcore.util.RawText;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Supplier;
-import javax.annotation.Nullable;
-
 import io.github.darkkronicle.advancedchatcore.util.TextBuilder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,8 +31,13 @@ import lombok.Getter;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 @Environment(EnvType.CLIENT)
 public class ShortcutSuggestor implements IMessageSuggestor, IJsonApplier, IScreenSupplier {

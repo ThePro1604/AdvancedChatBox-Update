@@ -1,13 +1,13 @@
 plugins {
-	id 'fabric-loom' version '0.12-SNAPSHOT'
+	id 'fabric-loom' version '1.11-SNAPSHOT'
 	id 'maven-publish'
-	id "io.freefair.lombok" version "6.0.0-m2"
+	id "io.freefair.lombok" version "8.10"
 }
 
-apply from: 'https://raw.githubusercontent.com/DarkKronicle/GradleScripts/main/gradle/publish.gradle'
+apply from: 'https://raw.githubusercontent.com/Scrupyy/GradleScripts/main/gradle/publish.gradle'
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
 
 archivesBaseName = project.archives_base_name
 version = "${project.minecraft_version}-${project.mod_version}"
@@ -17,6 +17,13 @@ repositories {
 	mavenCentral()
 	maven { url 'https://masa.dy.fi/maven' }
 	maven { url 'https://jitpack.io' }
+	maven {
+		url = uri("https://maven.pkg.github.com/Scrupyy/AdvancedChatCore")
+		credentials {
+			username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+			password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+		}
+	}
 }
 
 dependencies {
@@ -24,11 +31,12 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-	modImplementation "fi.dy.masa.malilib:malilib-fabric-1.19.0:${project.malilib_version}"
-	modImplementation "com.github.DarkKronicle:AdvancedChatCore:${project.advancedchat_version}"
+	modImplementation("com.github.sakura-ryoko:malilib:1.21.8-0.25.5")
+	modImplementation "com.scrupy:advancedchatcore:1.21.8-1.5.11"
 
 	implementation "org.languagetool:language-en:5.5"
 	// Transitive
+	implementation("org.mariuszgromada.math:MathParser.org-mXparser:6.1.0")
 	include "org.languagetool:language-en:5.5"
 	include "org.languagetool:languagetool-core:5.5"
 	include group: 'net.loomchild', name: 'segment', version: '2.0.3'
@@ -60,7 +68,7 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.encoding = "UTF-8"
-	it.options.release = 16
+	it.options.release = 21
 }
 
 java {

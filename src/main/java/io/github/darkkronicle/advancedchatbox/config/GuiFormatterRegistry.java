@@ -38,7 +38,7 @@ public class GuiFormatterRegistry extends
 
     @Override
     protected WidgetListRegistryOption<ChatFormatterRegistry.ChatFormatterOption> createListWidget(int listX,
-            int listY) {
+                                                                                                   int listY) {
         return new WidgetListRegistryOption<>(listX, listY, this.getBrowserWidth(), this.getBrowserHeight(), null,
                 ChatFormatterRegistry.getInstance(), this);
     }

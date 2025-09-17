@@ -10,12 +10,13 @@ package io.github.darkkronicle.advancedchatbox.chat;
 import com.mojang.brigadier.context.StringRange;
 import com.mojang.brigadier.suggestion.Suggestion;
 import com.mojang.brigadier.suggestion.Suggestions;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import lombok.Getter;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * A holder of {@link AdvancedSuggestion}
@@ -31,10 +32,14 @@ public class AdvancedSuggestions {
     @Getter
     private StringRange range;
 
-    /** Empty suggestions */
+    /**
+     * Empty suggestions
+     */
     public static final AdvancedSuggestions EMPTY = new AdvancedSuggestions(StringRange.at(0), new ArrayList<>());
 
-    /** Future of EMPTY */
+    /**
+     * Future of EMPTY
+     */
     public static CompletableFuture<AdvancedSuggestions> empty() {
         return CompletableFuture.completedFuture(EMPTY);
     }

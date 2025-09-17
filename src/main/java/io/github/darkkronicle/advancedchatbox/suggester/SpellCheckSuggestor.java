@@ -12,16 +12,7 @@ import io.github.darkkronicle.advancedchatbox.chat.AdvancedSuggestion;
 import io.github.darkkronicle.advancedchatbox.chat.AdvancedSuggestions;
 import io.github.darkkronicle.advancedchatbox.config.ChatBoxConfigStorage;
 import io.github.darkkronicle.advancedchatbox.interfaces.IMessageSuggestor;
-import io.github.darkkronicle.advancedchatcore.util.FindType;
-import io.github.darkkronicle.advancedchatcore.util.RawText;
-import io.github.darkkronicle.advancedchatcore.util.SearchUtils;
-import io.github.darkkronicle.advancedchatcore.util.StringMatch;
-import io.github.darkkronicle.advancedchatcore.util.StyleFormatter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import io.github.darkkronicle.advancedchatcore.util.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.text.Style;
@@ -31,6 +22,12 @@ import org.languagetool.ResultCache;
 import org.languagetool.UserConfig;
 import org.languagetool.language.AmericanEnglish;
 import org.languagetool.rules.RuleMatch;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class SpellCheckSuggestor implements IMessageSuggestor {

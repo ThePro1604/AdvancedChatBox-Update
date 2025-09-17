@@ -26,10 +26,10 @@ import io.github.darkkronicle.advancedchatcore.config.ConfigStorage;
 import io.github.darkkronicle.advancedchatcore.config.SaveableConfig;
 import io.github.darkkronicle.advancedchatcore.config.options.ConfigColor;
 import io.github.darkkronicle.advancedchatcore.util.Color;
-import java.io.File;
-import java.util.List;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+
+import java.io.File;
 
 @Environment(EnvType.CLIENT)
 public class ChatBoxConfigStorage implements IConfigHandler {
@@ -91,13 +91,13 @@ public class ChatBoxConfigStorage implements IConfigHandler {
         // );
 
         public static final ImmutableList<SaveableConfig<? extends IConfigBase>> OPTIONS = ImmutableList.of(HOVER_TEXT
-        // SUGGEST_CAPITAL
+                // SUGGEST_CAPITAL
         );
     }
 
     public static void loadFromFile() {
         File configFile =
-                FileUtils.getConfigDirectory().toPath().resolve("advancedchat").resolve(CONFIG_FILE_NAME).toFile();
+                FileUtils.getConfigDirectoryAsPath().resolve("advancedchat").resolve(CONFIG_FILE_NAME).toFile();
 
         if (configFile.exists() && configFile.isFile() && configFile.canRead()) {
             JsonElement element = ConfigStorage.parseJsonFile(configFile);
@@ -105,8 +105,8 @@ public class ChatBoxConfigStorage implements IConfigHandler {
             if (element != null && element.isJsonObject()) {
                 JsonObject root = element.getAsJsonObject();
 
-                ConfigStorage.readOptions(root, General.NAME, (List<SaveableConfig<?>>) General.OPTIONS);
-                ConfigStorage.readOptions(root, SpellChecker.NAME, (List<SaveableConfig<?>>) SpellChecker.OPTIONS);
+                ConfigStorage.readOptions(root, General.NAME, General.OPTIONS);
+                ConfigStorage.readOptions(root, SpellChecker.NAME, SpellChecker.OPTIONS);
 
                 ConfigStorage.applyRegistry(root.get(ChatFormatterRegistry.NAME), ChatFormatterRegistry.getInstance());
                 ConfigStorage.applyRegistry(root.get(ChatSuggestorRegistry.NAME), ChatSuggestorRegistry.getInstance());
@@ -117,13 +117,13 @@ public class ChatBoxConfigStorage implements IConfigHandler {
     }
 
     public static void saveFromFile() {
-        File dir = FileUtils.getConfigDirectory().toPath().resolve("advancedchat").toFile();
+        File dir = FileUtils.getConfigDirectoryAsPath().resolve("advancedchat").toFile();
 
         if ((dir.exists() && dir.isDirectory()) || dir.mkdirs()) {
             JsonObject root = new JsonObject();
 
-            ConfigStorage.writeOptions(root, General.NAME, (List<SaveableConfig<?>>) General.OPTIONS);
-            ConfigStorage.writeOptions(root, SpellChecker.NAME, (List<SaveableConfig<?>>) SpellChecker.OPTIONS);
+            ConfigStorage.writeOptions(root, General.NAME, General.OPTIONS);
+            ConfigStorage.writeOptions(root, SpellChecker.NAME, SpellChecker.OPTIONS);
 
             root.add("config_version", new JsonPrimitive(CONFIG_VERSION));
 

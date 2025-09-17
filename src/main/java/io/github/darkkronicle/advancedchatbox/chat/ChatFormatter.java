@@ -10,28 +10,34 @@ package io.github.darkkronicle.advancedchatbox.chat;
 import com.mojang.brigadier.context.StringRange;
 import io.github.darkkronicle.advancedchatbox.config.ChatBoxConfigStorage;
 import io.github.darkkronicle.advancedchatbox.registry.ChatFormatterRegistry;
-import io.github.darkkronicle.advancedchatcore.util.RawText;
 import io.github.darkkronicle.advancedchatcore.util.StringInsert;
 import io.github.darkkronicle.advancedchatcore.util.StringMatch;
-import java.util.HashMap;
-import java.util.Optional;
-
 import io.github.darkkronicle.advancedchatcore.util.TextUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.text.*;
+import net.minecraft.text.OrderedText;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
+
+import java.util.HashMap;
+import java.util.Optional;
 
 /**
  * A class to format the chat box on the
  */
 @Environment(EnvType.CLIENT)
 public class ChatFormatter {
-    /** The last content that was formatted */
+    /**
+     * The last content that was formatted
+     */
     private String current = null;
 
-    /** The formatted current */
+    /**
+     * The formatted current
+     */
     private Text last = null;
 
     private final TextFieldWidget widget;

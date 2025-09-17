@@ -10,23 +10,22 @@ package io.github.darkkronicle.advancedchatbox.formatter;
 import com.mojang.brigadier.ParseResults;
 import io.github.darkkronicle.advancedchatbox.interfaces.IMessageFormatter;
 import io.github.darkkronicle.advancedchatcore.util.*;
-
-import java.util.Optional;
-import javax.annotation.Nullable;
-
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.command.CommandSource;
+import net.minecraft.client.network.ClientCommandSource;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class ColorCodeFormatter implements IMessageFormatter {
 
     @Override
-    public Optional<Text> format(Text text, @Nullable ParseResults<CommandSource> parse) {
+    public Optional<Text> format(Text text, @Nullable ParseResults<ClientCommandSource> parse) {
         if (parse != null) {
             return Optional.empty();
         }

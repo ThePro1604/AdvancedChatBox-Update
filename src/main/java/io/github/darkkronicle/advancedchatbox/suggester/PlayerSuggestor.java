@@ -15,14 +15,15 @@ import io.github.darkkronicle.advancedchatcore.config.ConfigStorage;
 import io.github.darkkronicle.advancedchatcore.util.FindType;
 import io.github.darkkronicle.advancedchatcore.util.SearchUtils;
 import io.github.darkkronicle.advancedchatcore.util.StringMatch;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class PlayerSuggestor implements IMessageSuggestor {
