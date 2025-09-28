@@ -38,7 +38,7 @@ public class GuiSuggestorRegistry extends
 
     @Override
     protected WidgetListRegistryOption<ChatSuggestorRegistry.ChatSuggestorOption> createListWidget(int listX,
-            int listY) {
+                                                                                                   int listY) {
         return new WidgetListRegistryOption<>(listX, listY, this.getBrowserWidth(), this.getBrowserHeight(), null,
                 ChatSuggestorRegistry.getInstance(), this);
     }

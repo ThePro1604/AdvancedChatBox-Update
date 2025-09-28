@@ -16,23 +16,23 @@ import fi.dy.masa.malilib.util.StringUtils;
 import io.github.darkkronicle.advancedchatbox.suggester.ShortcutSuggestor;
 import io.github.darkkronicle.advancedchatcore.gui.WidgetConfigListEntry;
 import io.github.darkkronicle.advancedchatcore.gui.buttons.NamedSimpleButton;
-import java.util.ArrayList;
-import java.util.List;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class ShortcutEntryListWidget extends WidgetConfigListEntry<ShortcutSuggestor.Shortcut> {
 
-    private TextFieldWrapper<GuiTextFieldGeneric> name;
-    private TextFieldWrapper<GuiTextFieldGeneric> replace;
-    private List<TextFieldWrapper<GuiTextFieldGeneric>> texts = new ArrayList<>();
+    private final TextFieldWrapper<GuiTextFieldGeneric> name;
+    private final TextFieldWrapper<GuiTextFieldGeneric> replace;
+    private final List<TextFieldWrapper<GuiTextFieldGeneric>> texts = new ArrayList<>();
 
     public ShortcutEntryListWidget(int x, int y, int width, int height, boolean isOdd, ShortcutSuggestor.Shortcut entry,
-            int listIndex, ShortcutListWidget parent) {
+                                   int listIndex, ShortcutListWidget parent) {
         super(x, y, width, height, isOdd, entry, listIndex);
         y += 1;
         int pos = x + width - 2;
@@ -95,5 +95,6 @@ public class ShortcutEntryListWidget extends WidgetConfigListEntry<ShortcutSugge
     }
 
     @Override
-    public void renderEntry(int mouseX, int mouseY, boolean selected, DrawContext context) {}
+    public void renderEntry(int mouseX, int mouseY, boolean selected, DrawContext drawContext) {
+    }
 }

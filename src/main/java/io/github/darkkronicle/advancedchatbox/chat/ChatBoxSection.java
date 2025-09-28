@@ -14,7 +14,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
 
 @Environment(EnvType.CLIENT)
 public class ChatBoxSection extends AdvancedChatScreenSection {
@@ -36,7 +35,7 @@ public class ChatBoxSection extends AdvancedChatScreenSection {
     }
 
     @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float partialTicks) {
+    public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
         this.suggestor.render(context, mouseX, mouseY);
     }
 

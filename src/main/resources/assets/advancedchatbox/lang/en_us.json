@@ -1,11 +1,9 @@
 {
   "advancedchatbox.config.tab.general": "§dGeneral",
   "advancedchatbox.config.tab.spellchecker": "§6Spell Checker",
-
   "advancedchat.config.shortcutmenu.remove": "§cRemove",
   "advancedchat.gui.button.addshortcut": "§aAdd Shortcut",
   "advancedchat.config.tab.advancedchatbox": "§dBox",
-
   "advancedchatbox.screen.suggestors": "Suggestors",
   "advancedchatbox.screen.formatters": "Formatters",
   "advancedchatbox.config.button.config_suggestors": "Configure Suggestors",
@@ -17,7 +15,6 @@
   "advancedchatbox.config.chatsuggestor.info.calculator": "Whether or not the §6chat calculator§r is active\nTo use the chat calculator, put a §6math expression§r inside of §6[§fBrackets§6]§r, and press §6tab§r in the brackets\nExpressions follow the format of §6mXParser",
   "advancedchatbox.config.chatsuggestor.spellcheck": "Spell Checker",
   "advancedchatbox.config.chatsuggestor.info.spellcheck": "Whether or not the §6spell-checker§r is active",
-
   "advancedchatbox.config.button.config_formatters": "Configure Formatters",
   "advancedchatbox.config.chatformatter.commandcolorer": "Custom Command Highlighting",
   "advancedchatbox.config.chatformatter.info.commandcolorer": "Whether or not custom colors are used to highlight part of a §6command§r in the §9Chat HUD",
@@ -25,14 +22,12 @@
   "advancedchatbox.config.chatformatter.info.jsonformatter": "Whether or not §6JSON§r is parsed and highlighted in the §9Chat HUD",
   "advancedchatbox.config.chatformatter.colorcodeformatter": "Color Code Formatting",
   "advancedchatbox.config.chatformatter.info.colorcodeformatter": "Whether or not §6color codes§r with §6&§r are parsed and highlighted in their respected color",
-
-  "advancedchatbox.config.commandcolorer.commandcolor":  "Command Color",
-  "advancedchatbox.config.commandcolorer.info.commandcolor":  "What color a command is by default",
-  "advancedchatbox.config.commandcolorer.errorcolor":  "Error Color",
-  "advancedchatbox.config.commandcolorer.info.errorcolor":  "The color that highlights an incorrect command",
-  "advancedchatbox.config.commandcolorer.defaultpalette":  "Default Palette",
-  "advancedchatbox.config.commandcolorer.info.defaultpalette":  "The palette the command colorer uses for parts of commands.\nCustom ones can be declared in §7~/minecraft/config/advancedchat/colors.toml",
-
+  "advancedchatbox.config.commandcolorer.commandcolor": "Command Color",
+  "advancedchatbox.config.commandcolorer.info.commandcolor": "What color a command is by default",
+  "advancedchatbox.config.commandcolorer.errorcolor": "Error Color",
+  "advancedchatbox.config.commandcolorer.info.errorcolor": "The color that highlights an incorrect command",
+  "advancedchatbox.config.commandcolorer.defaultpalette": "Default Palette",
+  "advancedchatbox.config.commandcolorer.info.defaultpalette": "The palette the command colorer uses for parts of commands.\nCustom ones can be declared in §7~/minecraft/config/advancedchat/colors.toml",
   "advancedchatbox.config.general.highlightcolor": "Highlight Color",
   "advancedchatbox.config.general.info.highlightcolor": "What color §6selected suggestions§r should be",
   "advancedchatbox.config.general.unhighlightcolor": "Non-Highlighted Color",

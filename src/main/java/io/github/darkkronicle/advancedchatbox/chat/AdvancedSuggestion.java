@@ -11,14 +11,17 @@ import com.mojang.brigadier.Message;
 import com.mojang.brigadier.context.StringRange;
 import com.mojang.brigadier.suggestion.Suggestion;
 import io.github.darkkronicle.advancedchatcore.util.RawText;
-import javax.annotation.Nonnull;
 import lombok.Getter;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 
-/** Suggestion that contains render text, suggested text, suggested start/stop, and tooltip. */
+import javax.annotation.Nonnull;
+
+/**
+ * Suggestion that contains render text, suggested text, suggested start/stop, and tooltip.
+ */
 @Environment(EnvType.CLIENT)
 public class AdvancedSuggestion extends Suggestion {
     @Nonnull
@@ -26,9 +29,9 @@ public class AdvancedSuggestion extends Suggestion {
     private final Text render;
 
     /**
-     * @param range Range from the original string where it is recommending
-     * @param text Suggested text to use
-     * @param render How the suggestion will render
+     * @param range   Range from the original string where it is recommending
+     * @param text    Suggested text to use
+     * @param render  How the suggestion will render
      * @param tooltip Message to show up on hover
      */
     public AdvancedSuggestion(StringRange range, String text, Text render, Message tooltip) {

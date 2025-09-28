@@ -10,23 +10,24 @@ package io.github.darkkronicle.advancedchatbox.suggester.gui;
 import fi.dy.masa.malilib.gui.interfaces.ISelectionListener;
 import io.github.darkkronicle.advancedchatbox.suggester.ShortcutSuggestor;
 import io.github.darkkronicle.advancedchatcore.gui.WidgetConfigList;
-import java.util.Collection;
-import javax.annotation.Nullable;
 import net.minecraft.client.gui.screen.Screen;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
 
 public class ShortcutListWidget extends WidgetConfigList<ShortcutSuggestor.Shortcut, ShortcutEntryListWidget> {
     public final ShortcutSuggestor suggestor;
 
     public ShortcutListWidget(int x, int y, int width, int height,
-            @Nullable ISelectionListener<ShortcutSuggestor.Shortcut> selectionListener, ShortcutSuggestor parent,
-            Screen screen) {
+                              @Nullable ISelectionListener<ShortcutSuggestor.Shortcut> selectionListener, ShortcutSuggestor parent,
+                              Screen screen) {
         super(x, y, width, height, selectionListener, screen);
         this.suggestor = parent;
     }
 
     @Override
     protected ShortcutEntryListWidget createListEntryWidget(int x, int y, int listIndex, boolean isOdd,
-            ShortcutSuggestor.Shortcut entry) {
+                                                            ShortcutSuggestor.Shortcut entry) {
         return new ShortcutEntryListWidget(x, y, this.browserEntryWidth, this.getBrowserEntryHeightFor(entry), isOdd,
                 entry, listIndex, this);
     }
