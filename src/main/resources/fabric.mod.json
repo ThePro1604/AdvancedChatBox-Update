@@ -5,12 +5,14 @@
   "name": "AdvancedChatBox",
   "description": "A mod to overhaul the Minecraft chat text box",
   "authors": [
-    "DarkKronicle"
+    "DarkKronicle",
+    "EnricoMessall",
+    "Scrupy"
   ],
   "contact": {
-    "sources": "https://github.com/DarkKronicle/AdvancedChatBox",
-    "issues": "https://github.com/DarkKronicle/AdvancedChatBox/issues",
-    "discord": "https://discord.gg/WnaE3uZxDA"
+    "homepage": "https://arematics.com",
+    "sources": "https://github.com/Arematics/AdvancedChatFilters",
+    "issues": "https://github.com/Arematics/AdvancedChatFilters/issues"
   },
   "license": "MPL-v2",
   "icon": "assets/advancedchatbox/icon.png",
@@ -25,7 +27,7 @@
     "fabric": "*",
     "minecraft": ">=1.21.8",
     "malilib": ">=0.25.5",
-    "advancedchatcore": ">=1.5.11-1.21.8"
+    "advancedchatcore": ">=1.5.12-1.21.8"
   },
   "custom": {
     "acmodule": true,
