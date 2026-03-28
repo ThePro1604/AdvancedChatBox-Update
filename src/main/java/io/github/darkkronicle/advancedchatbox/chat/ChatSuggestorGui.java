@@ -28,6 +28,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import org.lwjgl.glfw.GLFW;
 import net.minecraft.client.network.ClientCommandSource;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.resource.language.I18n;
@@ -82,7 +83,9 @@ public class ChatSuggestorGui {
         this.chatScreenSized = chatScreenSized;
         this.suggestor = new ChatSuggestor(textField);
         this.formatter = new ChatFormatter(textField, suggestor);
-        this.textField.setRenderTextProvider(this::provideRenderText);
+        // TODO: setRenderTextProvider has been removed in newer Minecraft versions
+        // Need to find alternative way to provide custom text rendering
+        // this.textField.setRenderTextProvider(this::provideRenderText);
     }
 
     public void setWindowActive(boolean windowActive) {
@@ -257,7 +260,7 @@ public class ChatSuggestorGui {
                 i++;
                 int j = this.chatScreenSized ? this.owner.height - 14 - 13 - 12 * i : 72 + 12 * i;
                 context.fill(this.x - 1, j, this.x + this.width + 1, j + 12,
-                        ChatBoxConfigStorage.General.BACKGROUND_COLOR.config.get().color());
+                        ChatBoxConfigStorage.General.BACKGROUND_COLOR.config.getIntegerValue());
                 if (message != null) {
                     context.drawTextWithShadow(textRenderer, message, this.x, j + 2, -1);
                 }
@@ -309,10 +312,10 @@ public class ChatSuggestorGui {
                 // Draw lines to signify that there is more
                 context.fill(this.area.getX(), this.area.getY() - 1,
                         this.area.getX() + this.area.getWidth(), this.area.getY(),
-                        ChatBoxConfigStorage.General.BACKGROUND_COLOR.config.get().color());
+                        ChatBoxConfigStorage.General.BACKGROUND_COLOR.config.getIntegerValue());
                 context.fill(this.area.getX(), this.area.getY() + this.area.getHeight(),
                         this.area.getX() + this.area.getWidth(), this.area.getY() + this.area.getHeight() + 1,
-                        ChatBoxConfigStorage.General.BACKGROUND_COLOR.config.get().color());
+                        ChatBoxConfigStorage.General.BACKGROUND_COLOR.config.getIntegerValue());
                 int x;
                 if (moreBelow) {
                     // Dotted
@@ -344,7 +347,7 @@ public class ChatSuggestorGui {
                 AdvancedSuggestion suggestion = this.suggestions.get(s + this.inWindowIndex);
                 context.fill(this.area.getX(), this.area.getY() + 12 * s,
                         this.area.getX() + this.area.getWidth(), this.area.getY() + 12 * s + 12,
-                        ChatBoxConfigStorage.General.BACKGROUND_COLOR.config.get().color());
+                        ChatBoxConfigStorage.General.BACKGROUND_COLOR.config.getIntegerValue());
                 if (mouseX > this.area.getX() && mouseX < this.area.getX() + this.area.getWidth()
                         && mouseY > this.area.getY() + 12 * s && mouseY < this.area.getY() + 12 * s + 12) {
                     if (updateMouse) {
@@ -357,8 +360,8 @@ public class ChatSuggestorGui {
                 context.drawTextWithShadow(textRenderer, suggestion.getRender(),
                         this.area.getX() + 1, this.area.getY() + 2 + 12 * s,
                         (s + this.inWindowIndex) == this.selection
-                                ? ChatBoxConfigStorage.General.HIGHLIGHT_COLOR.config.get().color()
-                                : ChatBoxConfigStorage.General.UNHIGHLIGHT_COLOR.config.get().color());
+                                ? ChatBoxConfigStorage.General.HIGHLIGHT_COLOR.config.getIntegerValue()
+                                : ChatBoxConfigStorage.General.UNHIGHLIGHT_COLOR.config.getIntegerValue());
             }
 
             if (hover) {
@@ -410,7 +413,8 @@ public class ChatSuggestorGui {
             }
             if (keyCode == KeyCodes.KEY_TAB) {
                 if (this.completed) {
-                    this.scroll(Screen.hasShiftDown() ? -1 : 1);
+                    this.scroll((GLFW.glfwGetKey(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT) == GLFW.GLFW_PRESS ||
+                                 GLFW.glfwGetKey(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_RIGHT_SHIFT) == GLFW.GLFW_PRESS) ? -1 : 1);
                 }
 
                 this.complete();

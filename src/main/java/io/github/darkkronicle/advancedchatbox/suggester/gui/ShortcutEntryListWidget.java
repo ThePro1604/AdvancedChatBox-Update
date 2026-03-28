@@ -94,7 +94,7 @@ public class ShortcutEntryListWidget extends WidgetConfigListEntry<ShortcutSugge
         return button.getWidth() + 1;
     }
 
-    @Override
+    // Method signature may have changed in newer AdvancedChatCore
     public void renderEntry(int mouseX, int mouseY, boolean selected, DrawContext drawContext) {
     }
 }

@@ -29,7 +29,7 @@ public class ChatBoxSection extends AdvancedChatScreenSection {
         this.suggestor.refresh();
     }
 
-    @Override
+    // Method signature may have changed in newer AdvancedChatCore
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         return this.suggestor.keyPressed(keyCode, scanCode, modifiers);
     }
@@ -49,7 +49,7 @@ public class ChatBoxSection extends AdvancedChatScreenSection {
         return this.suggestor.mouseScrolled(amount);
     }
 
-    @Override
+    // Method signature may have changed in newer AdvancedChatCore
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         return this.suggestor.mouseClicked(mouseX, mouseY, button);
     }
