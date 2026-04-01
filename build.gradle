@@ -28,7 +28,7 @@ def ts = ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern('y
 
 def modVersion = envModVersion ?: ts
 
-version = "${project.minecraft_version}-${modVersion}"
+version = "${project.minecraft_version}-${project.mod_version}"
 group = project.maven_group
 
 Properties additionalProperties = new Properties()
