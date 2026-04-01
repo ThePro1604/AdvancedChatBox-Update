@@ -28,6 +28,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.client.input.KeyInput;
 import org.lwjgl.glfw.GLFW;
 import net.minecraft.client.network.ClientCommandSource;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -95,11 +96,11 @@ public class ChatSuggestorGui {
         }
     }
 
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (this.window != null && this.window.keyPressed(keyCode, scanCode, modifiers)) {
+    public boolean keyPressed(KeyInput input) {
+        if (this.window != null && this.window.keyPressed(input)) {
             return true;
         }
-        if (this.owner.getFocused() == this.textField && keyCode == KeyCodes.KEY_TAB) {
+        if (this.owner.getFocused() == this.textField && input.key() == KeyCodes.KEY_TAB) {
             this.showSuggestions(true);
             return true;
         }
@@ -400,7 +401,8 @@ public class ChatSuggestorGui {
             return false;
         }
 
-        public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        public boolean keyPressed(KeyInput input) {
+            int keyCode = input.key();
             if (keyCode == KeyCodes.KEY_UP) {
                 this.scroll(-1);
                 this.completed = false;

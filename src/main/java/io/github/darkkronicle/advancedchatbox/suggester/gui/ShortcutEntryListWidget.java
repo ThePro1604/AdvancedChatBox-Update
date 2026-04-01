@@ -12,6 +12,7 @@ import fi.dy.masa.malilib.gui.button.ButtonGeneric;
 import fi.dy.masa.malilib.gui.button.IButtonActionListener;
 import fi.dy.masa.malilib.gui.interfaces.ITextFieldListener;
 import fi.dy.masa.malilib.gui.wrappers.TextFieldWrapper;
+import fi.dy.masa.malilib.render.GuiContext;
 import fi.dy.masa.malilib.util.StringUtils;
 import io.github.darkkronicle.advancedchatbox.suggester.ShortcutSuggestor;
 import io.github.darkkronicle.advancedchatcore.gui.WidgetConfigListEntry;
@@ -19,7 +20,6 @@ import io.github.darkkronicle.advancedchatcore.gui.buttons.NamedSimpleButton;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,7 +94,8 @@ public class ShortcutEntryListWidget extends WidgetConfigListEntry<ShortcutSugge
         return button.getWidth() + 1;
     }
 
-    // Method signature may have changed in newer AdvancedChatCore
-    public void renderEntry(int mouseX, int mouseY, boolean selected, DrawContext drawContext) {
+    @Override
+    public void renderEntry(GuiContext context, int mouseX, int mouseY, boolean selected) {
+        // Rendering is handled by parent class
     }
 }
