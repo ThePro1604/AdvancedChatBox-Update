@@ -44,15 +44,16 @@ public class ChatBoxConfigStorage implements IConfigHandler {
             return StringUtils.translate("advancedchatbox.config.general." + key);
         }
 
+        // Colors use malilib 26.1 AARRGGBB format (alpha first, not last)
         public static final SaveableConfig<ConfigColor> HIGHLIGHT_COLOR =
                 SaveableConfig.fromConfig("highlightColor", new ConfigColor(translate("highlightcolor"),
-                        "#FFFF00FF", translate("info.highlightcolor")));
+                        "#FFFFFF00", translate("info.highlightcolor")));
         public static final SaveableConfig<ConfigColor> UNHIGHLIGHT_COLOR =
                 SaveableConfig.fromConfig("unhighlightColor", new ConfigColor(translate("unhighlightcolor"),
-                        "#AAAAAAFF", translate("info.unhighlightcolor")));
+                        "#FFAAAAAA", translate("info.unhighlightcolor")));
         public static final SaveableConfig<ConfigColor> BACKGROUND_COLOR =
                 SaveableConfig.fromConfig("backgroundColor", new ConfigColor(translate("backgroundcolor"),
-                        "#000000AA", translate("info.backgroundcolor")));
+                        "#AA000000", translate("info.backgroundcolor")));
         public static final SaveableConfig<ConfigInteger> SUGGESTION_SIZE = SaveableConfig.fromConfig("suggestionSize",
                 new ConfigInteger(translate("suggestionsize"), 10, 1, 50, translate("info.suggestionsize")));
         public static final SaveableConfig<ConfigBoolean> REMOVE_IDENTIFIER =
@@ -63,7 +64,7 @@ public class ChatBoxConfigStorage implements IConfigHandler {
                 new ConfigBoolean(translate("pruneplayersuggestions"), true, translate("info.pruneplayersuggestions")));
         public static final SaveableConfig<ConfigColor> AVAILABLE_SUGGESTION_COLOR = SaveableConfig
                 .fromConfig("availableSuggestionColor", new ConfigColor(translate("availablesuggestioncolor"),
-                        "#969696FF", translate("info.availablesuggestioncolor")));
+                        "#FF969696", translate("info.availablesuggestioncolor")));
 
         public static final ImmutableList<SaveableConfig<? extends IConfigBase>> OPTIONS =
                 ImmutableList.of(HIGHLIGHT_COLOR, UNHIGHLIGHT_COLOR, BACKGROUND_COLOR, SUGGESTION_SIZE,
