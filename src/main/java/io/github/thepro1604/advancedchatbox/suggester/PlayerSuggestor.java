@@ -1,0 +1,77 @@
+/*
+ * Copyright (C) 2021 thepro1604
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+package io.github.thepro1604.advancedchatbox.suggester;
+
+import com.mojang.brigadier.context.StringRange;
+import io.github.thepro1604.advancedchatbox.chat.AdvancedSuggestion;
+import io.github.thepro1604.advancedchatbox.config.ChatBoxConfigStorage;
+import io.github.thepro1604.advancedchatbox.interfaces.IMessageSuggestor;
+import io.github.thepro1604.advancedchatcore.config.ConfigStorage;
+import io.github.thepro1604.advancedchatcore.util.FindType;
+import io.github.thepro1604.advancedchatcore.util.SearchUtils;
+import io.github.thepro1604.advancedchatcore.util.StringMatch;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.PlayerInfo;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+
+@Environment(EnvType.CLIENT)
+public class PlayerSuggestor implements IMessageSuggestor {
+    @Override
+    public Optional<List<AdvancedSuggestion>> suggestCurrentWord(String text, StringRange range) {
+        List<AdvancedSuggestion> newSuggestions = new ArrayList<>();
+        Collection<String> names = getPlayerNames();
+        for (String name : names) {
+            if (text.equals("") || name.toLowerCase().startsWith(text.toLowerCase())) {
+                newSuggestions.add(new AdvancedSuggestion(range, name));
+            }
+        }
+        return Optional.of(newSuggestions);
+    }
+
+    private Collection<String> getPlayerNames() {
+        List<String> list = new ArrayList<>();
+
+        for (PlayerInfo playerListEntry : Minecraft.getInstance().player.connection.getOnlinePlayers()) {
+
+            //checking if player name is empty, to avoid fake players
+            if (playerListEntry.getProfile().name().equals("")) continue;
+
+            if (ChatBoxConfigStorage.General.PRUNE_PLAYER_SUGGESTIONS.config.getBooleanValue()
+                    && playerListEntry.getTabListDisplayName() != null) {
+                // Try to get their actual name (without prefix)
+                StringMatch match = SearchUtils
+                        .getMatch(playerListEntry.getTabListDisplayName().getString(),
+                                ConfigStorage.General.MESSAGE_OWNER_REGEX.config.getStringValue(), FindType.REGEX)
+                        .orElse(null);
+                if (match != null) {
+                    // Check to make sure it isn't blank
+                    if (!match.match.equals("")) {
+                        list.add(match.match);
+                    }
+                } else {
+                    // Check to make sure it isn't blank
+                    if (!playerListEntry.getTabListDisplayName().getString().equals("")) {
+                        list.add(playerListEntry.getTabListDisplayName().getString());
+                    }
+                }
+            } else {
+                // Player name is never null. But on servers it can be populated with
+                // fake players.
+                list.add(playerListEntry.getProfile().name());
+            }
+        }
+
+        return list;
+    }
+}

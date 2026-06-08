@@ -1,0 +1,72 @@
+/*
+ * Copyright (C) 2021 thepro1604
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+package io.github.thepro1604.advancedchatbox.chat;
+
+import io.github.thepro1604.advancedchatbox.config.ChatBoxConfigStorage;
+import io.github.thepro1604.advancedchatcore.chat.AdvancedChatScreen;
+import io.github.thepro1604.advancedchatcore.interfaces.AdvancedChatScreenSection;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.input.KeyEvent;
+
+@Environment(EnvType.CLIENT)
+public class ChatBoxSection extends AdvancedChatScreenSection {
+    private ChatSuggestorGui suggestor;
+
+    public ChatBoxSection(AdvancedChatScreen screen) {
+        super(screen);
+    }
+
+    @Override
+    public void onChatFieldUpdate(String chatText, String text) {
+        this.suggestor.setWindowActive(!text.equals(getScreen().getOriginalChatText()));
+        this.suggestor.refresh();
+    }
+
+    @Override
+    public boolean keyPressed(KeyEvent input) {
+        return this.suggestor.keyPressed(input);
+    }
+
+    @Override
+    public void extractRenderState(GuiGraphicsExtractor context, int mouseX, int mouseY, float deltaTicks) {
+        this.suggestor.render(context, mouseX, mouseY);
+    }
+
+    @Override
+    public void setChatFromHistory(String hist) {
+        this.suggestor.setWindowActive(false);
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
+        return this.suggestor.mouseScrolled(amount);
+    }
+
+    @Override
+    public boolean mouseClicked(MouseButtonEvent click, boolean doubled) {
+        return this.suggestor.mouseClicked(click.x(), click.y(), click.button());
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        this.suggestor.refresh();
+    }
+
+    @Override
+    public void initGui() {
+        Minecraft client = Minecraft.getInstance();
+        AdvancedChatScreen screen = getScreen();
+        this.suggestor = new ChatSuggestorGui(client, screen, screen.getChatField(), client.font, false, false,
+                1, ChatBoxConfigStorage.General.SUGGESTION_SIZE.config.getIntegerValue(), true);
+        this.suggestor.refresh();
+    }
+}

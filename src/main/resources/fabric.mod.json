@@ -5,12 +5,15 @@
   "name": "AdvancedChatBox",
   "description": "A mod to overhaul the Minecraft chat text box",
   "authors": [
-    "DarkKronicle",
+    "ThePro1604"
+  ],
+  "contributors": [
+    "DarkKronicle (original author)",
     "EnricoMessall",
     "Scrupy"
   ],
   "contact": {
-    "homepage": "https://arematics.com",
+    "homepage": "https://github.com/ThePro1604",
     "sources": "https://github.com/Arematics/AdvancedChatFilters",
     "issues": "https://github.com/Arematics/AdvancedChatFilters/issues"
   },
@@ -19,7 +22,7 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "io.github.darkkronicle.advancedchatbox.AdvancedChatBox"
+      "io.github.thepro1604.advancedchatbox.AdvancedChatBox"
     ]
   },
   "depends": {
