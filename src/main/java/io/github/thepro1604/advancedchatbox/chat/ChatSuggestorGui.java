@@ -18,7 +18,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.Suggestion;
 import com.mojang.brigadier.tree.CommandNode;
 import com.mojang.brigadier.tree.LiteralCommandNode;
-import fi.dy.masa.malilib.util.KeyCodes;
+import com.mojang.blaze3d.platform.InputConstants;
 import io.github.thepro1604.advancedchatbox.config.ChatBoxConfigStorage;
 import io.github.thepro1604.advancedchatcore.util.Colors;
 import net.fabricmc.api.EnvType;
@@ -29,7 +29,6 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.input.KeyEvent;
-import org.lwjgl.glfw.GLFW;
 import net.minecraft.client.multiplayer.ClientSuggestionProvider;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.resources.language.I18n;
@@ -100,7 +99,7 @@ public class ChatSuggestorGui {
         if (this.window != null && this.window.keyPressed(input)) {
             return true;
         }
-        if (this.owner.getFocused() == this.textField && input.key() == KeyCodes.KEY_TAB) {
+        if (this.owner.getFocused() == this.textField && input.key() == InputConstants.KEY_TAB) {
             this.showSuggestions(true);
             return true;
         }
@@ -404,26 +403,25 @@ public class ChatSuggestorGui {
 
         public boolean keyPressed(KeyEvent input) {
             int keyCode = input.key();
-            if (keyCode == KeyCodes.KEY_UP) {
+            if (keyCode == InputConstants.KEY_UP) {
                 this.scroll(-1);
                 this.completed = false;
                 return true;
             }
-            if (keyCode == KeyCodes.KEY_DOWN) {
+            if (keyCode == InputConstants.KEY_DOWN) {
                 this.scroll(1);
                 this.completed = false;
                 return true;
             }
-            if (keyCode == KeyCodes.KEY_TAB) {
+            if (keyCode == InputConstants.KEY_TAB) {
                 if (this.completed) {
-                    // Use Screen.hasShiftDown() instead of raw GLFW (Window.getHandle() removed in 26.1)
-                    this.scroll(((input.modifiers() & org.lwjgl.glfw.GLFW.GLFW_MOD_SHIFT) != 0) ? -1 : 1);
+                    this.scroll(((input.modifiers() & InputConstants.MOD_SHIFT) != 0) ? -1 : 1);
                 }
 
                 this.complete();
                 return true;
             }
-            if (keyCode == KeyCodes.KEY_ESCAPE) {
+            if (keyCode == InputConstants.KEY_ESCAPE) {
                 this.discard();
                 return true;
             }
